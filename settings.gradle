@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "CS4084-Mobile-Application-Development"
