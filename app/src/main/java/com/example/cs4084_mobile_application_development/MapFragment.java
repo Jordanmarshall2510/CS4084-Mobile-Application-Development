@@ -44,6 +44,12 @@ public class MapFragment extends Fragment {
                 mMap = googleMap;
                 ArrayList<LatLng> locationPoints = LocationService.getLocationPoints();
                 if(locationPoints.size() != 0) {
+                    mMap.addMarker(new MarkerOptions()
+                            .position(locationPoints.get(0))
+                            .title("Start"));
+                    mMap.addMarker(new MarkerOptions()
+                            .position(locationPoints.get(locationPoints.size() - 1))
+                            .title("End"));
                     Polyline line = mMap.addPolyline(new PolylineOptions()
                             .addAll(locationPoints)
                             .width(7)
