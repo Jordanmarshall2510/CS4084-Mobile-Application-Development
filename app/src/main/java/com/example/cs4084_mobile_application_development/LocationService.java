@@ -9,10 +9,14 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
 
 public class LocationService extends BroadcastReceiver {
 
     public static final String ACTION_PROCESS_UPDATE = "com.example.cs4084_mobile_application_development.UPDATE_LOCATION";
+    private static ArrayList<LatLng> locationPoints = new ArrayList<LatLng>();
 
     @Override
     public void onReceive(Context context, Intent intent){
@@ -22,14 +26,14 @@ public class LocationService extends BroadcastReceiver {
                 LocationResult result = LocationResult.extractResult(intent);
                 if(result != null){
                     Location location = result.getLastLocation();
-                    String locationString = new StringBuilder("" + location.getLatitude())
-                            .append("/")
-                            .append(location.getLongitude())
-                            .toString();
-                    Toast.makeText(context, locationString, Toast.LENGTH_SHORT).show();
+                    LatLng locationPoint = new LatLng(location.getLatitude(), location.getLongitude());
+                    locationPoints.add(locationPoint);
                 }
             }
         }
     }
 
+    public static ArrayList<LatLng> getLocationPoints(){
+        return locationPoints;
+    }
 }

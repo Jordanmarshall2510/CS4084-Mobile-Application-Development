@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -103,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private PendingIntent getPendingIntent(){
-        return null;
+        Intent intent = new Intent(this, LocationService.class);
+        intent.setAction(LocationService.ACTION_PROCESS_UPDATE);
+        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private void buildLocationRequest(){
@@ -111,6 +114,6 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(3000);
-        locationRequest.setSmallestDisplacement(10f);
+        locationRequest.setSmallestDisplacement(2f);
     }
 }

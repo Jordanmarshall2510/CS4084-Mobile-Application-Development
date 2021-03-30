@@ -19,6 +19,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.ArrayList;
+
 public class MapFragment extends Fragment {
 
     private GoogleMap mMap;
@@ -40,16 +42,14 @@ public class MapFragment extends Fragment {
             public void onMapReady(GoogleMap googleMap) {
                 //When Map is loaded
                 mMap = googleMap;
-                Polyline line = mMap.addPolyline(new PolylineOptions()
-                        .add(
-                                new LatLng(52.6738, -8.5541),
-                                new LatLng(52.6741, -8.5544),
-                                new LatLng(52.6730, -8.5550),
-                                new LatLng(52.6760, -8.5570)
-                        )
-                        .width(7)
-                        .color(Color.RED));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(52.6738, -8.5541), 15));
+                ArrayList<LatLng> locationPoints = LocationService.getLocationPoints();
+                if(locationPoints.size() != 0) {
+                    Polyline line = mMap.addPolyline(new PolylineOptions()
+                            .addAll(locationPoints)
+                            .width(7)
+                            .color(Color.RED));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationPoints.get(locationPoints.size() - 1), 15));
+                }
             }
         });
 
