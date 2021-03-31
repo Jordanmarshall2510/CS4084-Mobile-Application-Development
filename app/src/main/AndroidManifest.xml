@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar">
-        <receiver
-            android:name=".LocationService"/>
+        <activity android:name=".LoginActivity"></activity>
+
+        <receiver android:name=".LocationService" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
