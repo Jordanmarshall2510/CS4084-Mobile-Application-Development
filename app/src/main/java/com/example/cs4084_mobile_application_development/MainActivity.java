@@ -11,12 +11,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -115,5 +117,28 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(3000);
         locationRequest.setSmallestDisplacement(2f);
+    }
+
+
+    private TextInputLayout textInputName;
+
+    public void confirmInput(View view) {
+        boolean validation = validateName();
+
+        if (validation) {
+            //move to first fragment
+        }
+    }
+
+    private boolean validateName(){
+        String nameInput = textInputName.getEditText().getText().toString();
+
+        if(nameInput.isEmpty()) {
+            textInputName.setError("fieldcan't be empty");
+            return false;
+        } else{
+            textInputName.setError(null);
+            return true;
+        }
     }
 }
