@@ -5,18 +5,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.os.IBinder;
-import android.widget.Toast;
 
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import androidx.databinding.ObservableArrayList;
+
 public class LocationService extends BroadcastReceiver {
 
     public static final String ACTION_PROCESS_UPDATE = "com.example.cs4084_mobile_application_development.UPDATE_LOCATION";
-    private static ArrayList<LatLng> locationPoints = new ArrayList<LatLng>();
+    private static ObservableArrayList<LatLng> locationPoints = new ObservableArrayList<LatLng>();
 
     @Override
     public void onReceive(Context context, Intent intent){
@@ -33,7 +33,7 @@ public class LocationService extends BroadcastReceiver {
         }
     }
 
-    public static ArrayList<LatLng> getLocationPoints(){
+    public static ObservableArrayList<LatLng> getLocationPoints(){
         return locationPoints;
     }
 }
