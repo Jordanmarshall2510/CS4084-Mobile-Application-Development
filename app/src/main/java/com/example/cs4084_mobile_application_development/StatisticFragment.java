@@ -79,7 +79,7 @@ public class StatisticFragment extends Fragment {
         return (rad * 180.0 / Math.PI);
     }
 
-    public double calculateTotalDistance(ObservableArrayList<LatLng> points)
+    public long calculateTotalDistance(ObservableArrayList<LatLng> points)
     {
         double result = 0;
 
@@ -88,7 +88,7 @@ public class StatisticFragment extends Fragment {
             result += distance(points.get(i), points.get(i-1), 'K');
         }
 
-        return result;
+        return (long) (result * 1000);
     }
 }
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "299657367067",
+    "project_id": "affinify-92be3",
+    "storage_bucket": "affinify-92be3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299657367067:android:aed636c4e3870e55c1f2be",
+        "android_client_info": {
+          "package_name": "com.example.cs4084_mobile_application_development"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299657367067-qa8j0gk7u6kjjhkf8q12oblumdmcrsun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMYQCS_Kci7IQ3zUlYsCafCEL2XxS9EEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299657367067-qa8j0gk7u6kjjhkf8q12oblumdmcrsun.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
