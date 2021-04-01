@@ -51,6 +51,8 @@ public class StatisticFragment extends Fragment {
         caloriesBurntTextStatistic
                 .setText("Calories:      " + calories + "kcal");
 
+        System.out.println("##################################################    TotalDistance: " + calculateTotalDistance(locationPoints));
+
     }
 
     public static double distance(LatLng one, LatLng two, char unit) {
@@ -67,18 +69,26 @@ public class StatisticFragment extends Fragment {
         return (dist);
     }
 
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    /*::  This function converts decimal degrees to radians             :*/
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    //  This function converts decimal degrees to radians
     public static double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
     }
 
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-    /*::  This function converts radians to decimal degrees             :*/
-    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    //  This function converts radians to decimal degrees
     public static double rad2deg(double rad) {
         return (rad * 180.0 / Math.PI);
+    }
+
+    public double calculateTotalDistance(ObservableArrayList<LatLng> points)
+    {
+        double result = 0;
+
+        for (int i = 1; i < points.size(); i++)
+        {
+            result += distance(points.get(i), points.get(i-1), 'K');
+        }
+
+        return result;
     }
 }
 
