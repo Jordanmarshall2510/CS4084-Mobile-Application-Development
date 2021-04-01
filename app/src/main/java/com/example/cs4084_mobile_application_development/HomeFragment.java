@@ -20,9 +20,9 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstaceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        super.onViewCreated(view, savedInstaceState);
+        super.onViewCreated(view, savedInstanceState);
 
         View currentView = getView();
 
