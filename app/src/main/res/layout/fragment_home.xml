@@ -1,155 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="#252f47">
 
+    <!--Affinify Title-->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="Affinify"
+        android:gravity="center"/>
+
+    <!--User Profile-->
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="300dp"
         android:src="@drawable/ic_baseline_default_avatar" />
 
+    <!--Start/Stop Button-->
+    <Button
+        android:id="@+id/startStopButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="start/stop"
+        android:textSize="20dp"
+        android:layout_margin="30dp"
+        android:padding="30dp"/>
+
+    <!--3 Statistic Images-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:gravity="center|bottom"
-        android:layout_marginBottom="100dp">
-
-
-        <TextView
-            android:id="@+id/distanceText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="dist"
-            android:textSize="30dp" />
-
-        <TextView
-            android:id="@+id/caloriesText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/subtitle"
-            android:maxLines="1"
-            android:layout_weight="1"
-            android:textSize="30dp"
-            android:text="cal"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/timeText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/subtitle"
-            android:maxLines="1"
-            android:layout_weight="1"
-            android:textSize="30dp"
-            android:text="time"
-            android:gravity="center"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:gravity="center|bottom"
-        android:layout_marginBottom="150dp">
-
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/distanceImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_baseline_statistics"
             android:layout_weight="1"/>
         <ImageView
             android:id="@+id/caloriesImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_baseline_local_calories"
             android:layout_weight="1"/>
         <ImageView
             android:id="@+id/timeImage"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:src="@drawable/ic_baseline_access_time"
             android:layout_weight="1"/>
-
     </LinearLayout>
 
+    <!--3 Statistic Text Values-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:gravity="center|bottom"
-        android:layout_marginBottom="80dp">
-
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/distanceUnitText"
-            android:layout_width="0dp"
+            android:id="@+id/distanceText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="1"
             android:text="km"
-            android:textSize="15dp" />
-
-        <TextView
-            android:id="@+id/caloriesUnitText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/subtitle"
-            android:maxLines="1"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:text="kcal"
+            android:textSize="30dp"
             android:gravity="center"/>
 
         <TextView
-            android:id="@+id/timeUnitText"
-            android:layout_width="0dp"
+            android:id="@+id/caloriesText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/subtitle"
-            android:maxLines="1"
             android:layout_weight="1"
-            android:textSize="15dp"
+            android:text="kcal"
+            android:textSize="30dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="time"
+            android:textSize="30dp"
             android:gravity="center"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/startStopButton"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="250dp"
-        android:text="start/stop" />
-
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="570dp"
-        android:textSize="40dp"
-        android:text="Affinify"
-        android:gravity="center"/>
-
-</RelativeLayout>
+</LinearLayout>

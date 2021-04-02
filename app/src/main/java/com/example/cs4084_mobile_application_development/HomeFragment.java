@@ -13,6 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class HomeFragment extends Fragment {
+
+    public String distanceValue = "1.05";
+    public String caloriesValue = "150";
+    public String timeValue = "100";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,9 +42,9 @@ public class HomeFragment extends Fragment {
         ImageView timeImage = (ImageView) currentView.findViewById(R.id.timeImage);
 
         // Change the text
-        distanceText.setText("1.05");
-        caloriesText.setText("150");
-        timeText.setText("0h 25m");
+        distanceText.setText(distanceValue + " km");
+        caloriesText.setText(caloriesValue + " kcal");
+        timeText.setText(timeValue + " mins");
 
         // Change the image colours
         distanceImage.setColorFilter(Color.parseColor("#ff3030"));
