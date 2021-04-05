@@ -18,10 +18,10 @@ public class StatisticFragment extends Fragment {
 
     private ObservableArrayList<LatLng> locationPoints;
 
-    double distance = 100;
-    double time = 200;
-    double speed = 300;
-    double calories = 400;
+    double distance = 0;
+    double time = 0;
+    double speed = 0;
+    double calories = 0;
 
     @Nullable
     @Override
@@ -34,6 +34,11 @@ public class StatisticFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         View currentView = getView();
         locationPoints = LocationService.getLocationPoints();
+
+        distance = calculateTotalDistance(locationPoints);
+        time = getTimeElapsed(1609506000000L, 1609509600000L);
+        speed = getSpeed(1609506000000L, 1609509600000L, calculateTotalDistance(locationPoints));
+        calories = 400;
 
         // Get references to text views we want to change
         TextView distanceTextStatistic = (TextView) currentView.findViewById(R.id.distanceTextStatistic);
@@ -79,6 +84,7 @@ public class StatisticFragment extends Fragment {
         return (rad * 180.0 / Math.PI);
     }
 
+    //Calculates total distance in meters
     public long calculateTotalDistance(ObservableArrayList<LatLng> points)
     {
         double result = 0;
@@ -89,6 +95,20 @@ public class StatisticFragment extends Fragment {
         }
 
         return (long) (result * 1000);
+    }
+
+    //Get speed in m/s. Takes startTime and stopTime in milliseconds, and totalDistance in meters.
+    public long getSpeed(long startTime, long stopTime, long totalDistance)
+    {
+        //timeElapsed in seconds
+        long timeElapsed = (stopTime - startTime) / 1000;
+        return totalDistance / timeElapsed;
+    }
+
+    //Gets time elapsed in seconds. Takes startTime and stopTime in milliseconds.
+    public long getTimeElapsed(long startTime, long stopTime)
+    {
+        return (stopTime - startTime) / 1000;
     }
 }
 
