@@ -41,12 +41,19 @@ public class MapFragment extends Fragment {
             public void onItemRangeChanged(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
             @Override
             public void onItemRangeInserted(ObservableList<LatLng> sender, int positionStart, int itemCount) {
-                line.setPoints(sender);
-                endPoint.remove();
-                endPoint = mMap.addMarker(new MarkerOptions()
-                        .position(sender.get(sender.size() - 1))
-                        .title("End"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sender.get(sender.size() - 1), 15));
+                if(line != null)
+                {
+                    line.setPoints(sender);
+                    endPoint.remove();
+                    endPoint = mMap.addMarker(new MarkerOptions()
+                            .position(sender.get(sender.size() - 1))
+                            .title("End"));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sender.get(sender.size() - 1), 18));
+                }
+                else
+                {
+                    setupMap();
+                }
             }
             @Override
             public void onItemRangeMoved(ObservableList<LatLng> sender, int fromPosition, int toPosition, int itemCount) { }
@@ -67,22 +74,26 @@ public class MapFragment extends Fragment {
             public void onMapReady(GoogleMap googleMap) {
                 //When Map is loaded
                 mMap = googleMap;
-                if(locationPoints.size() != 0) {
-                    mMap.addMarker(new MarkerOptions()
-                            .position(locationPoints.get(0))
-                            .title("Start"));
-                    endPoint = mMap.addMarker(new MarkerOptions()
-                            .position(locationPoints.get(locationPoints.size() - 1))
-                            .title("End"));
-                    line = mMap.addPolyline(new PolylineOptions()
-                            .addAll(locationPoints)
-                            .width(7)
-                            .color(Color.RED));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationPoints.get(locationPoints.size() - 1), 15));
-                }
+                setupMap();
             }
         });
 
         return view;
+    }
+
+    private void setupMap(){
+        if(!locationPoints.isEmpty()) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(locationPoints.get(0))
+                    .title("Start"));
+            endPoint = mMap.addMarker(new MarkerOptions()
+                    .position(locationPoints.get(locationPoints.size() - 1))
+                    .title("End"));
+            line = mMap.addPolyline(new PolylineOptions()
+                    .addAll(locationPoints)
+                    .width(7)
+                    .color(Color.RED));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationPoints.get(locationPoints.size() - 1), 18));
+        }
     }
 }
