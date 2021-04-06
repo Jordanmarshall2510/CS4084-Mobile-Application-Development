@@ -41,19 +41,19 @@ public class StatisticFragment extends Fragment {
         calories = 400;
 
         // Get references to text views we want to change
-        TextView distanceTextStatistic = (TextView) currentView.findViewById(R.id.distanceTextStatistic);
-        TextView timeTextStatistic = (TextView) currentView.findViewById(R.id.timeTextStatistic);
-        TextView speedTextStatistic = (TextView) currentView.findViewById(R.id.speedTextStatistic);
-        TextView caloriesBurntTextStatistic = (TextView) currentView.findViewById(R.id.caloriesBurntTextStatistic);
+        TextView dailyDistanceTextStatistic = (TextView) currentView.findViewById(R.id.dailyDistanceTextStatistic);
+        TextView dailyTimeTextStatistic = (TextView) currentView.findViewById(R.id.dailyTimeTextStatistic);
+        TextView dailySpeedTextStatistic = (TextView) currentView.findViewById(R.id.dailySpeedTextStatistic);
+        TextView dailyCaloriesBurntTextStatistic = (TextView) currentView.findViewById(R.id.dailyCaloriesBurntTextStatistic);
 
         // Change the text
-        distanceTextStatistic
+        dailyDistanceTextStatistic
                 .setText("Distance:    " + distance + "km");
-        timeTextStatistic
+        dailyTimeTextStatistic
                 .setText("Time:           " + time + "");
-        speedTextStatistic
+        dailySpeedTextStatistic
                 .setText("Speed:         " + speed + "");
-        caloriesBurntTextStatistic
+        dailyCaloriesBurntTextStatistic
                 .setText("Calories:      " + calories + "kcal");
 
         System.out.println("##################################################    TotalDistance: " + calculateTotalDistance(locationPoints));
