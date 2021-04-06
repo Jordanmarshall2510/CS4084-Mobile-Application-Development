@@ -8,35 +8,85 @@
     android:background="#252f47">
 
     <TextView
-        android:id="@+id/distanceTextStatistic"
+        android:id="@+id/dailyTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="DAILY"
+        android:layout_gravity="center"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/dailyDistanceTextStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Distance:"
         android:textSize="30sp"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/timeTextStatistic"
+        android:id="@+id/dailyTimeTextStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time:"
         android:textSize="30sp"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/speedTextStatistic"
+        android:id="@+id/dailySpeedTextStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Speed:"
         android:textSize="30sp"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
 
     <TextView
-        android:id="@+id/caloriesBurntTextStatistic"
+        android:id="@+id/dailyCaloriesBurntTextStatistic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calories burnt:"
         android:textSize="30sp"
-        android:padding="20dp"/>
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/totalTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="TOTAL"
+        android:layout_gravity="center"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/totalDistanceTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Distance:"
+        android:textSize="30sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/totalTimeTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time:"
+        android:textSize="30sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/totalSpeedTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed:"
+        android:textSize="30sp"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/totalCaloriesBurntTextStatistic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories burnt:"
+        android:textSize="30sp"
+        android:padding="10dp"/>
 
 </LinearLayout>
