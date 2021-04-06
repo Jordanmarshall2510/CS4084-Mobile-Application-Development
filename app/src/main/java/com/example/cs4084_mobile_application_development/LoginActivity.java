@@ -32,9 +32,11 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextInputEditText emailInput = findViewById(R.id.etemail);
-                TextInputEditText passwordInput = findViewById(R.id.etPassword);
-                signIn(emailInput.getText().toString(), passwordInput.getText().toString());
+                TextInputEditText emailInput = findViewById(R.id.loginUsername);
+                TextInputEditText passwordInput = findViewById(R.id.loginPassword);
+                if(emailInput.getText().toString()!= null && passwordInput.getText().toString() != null) {
+                    signIn(emailInput.getText().toString(), passwordInput.getText().toString());
+                }
             }
         });
 
@@ -42,10 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent k = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(k);
-
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
     }
@@ -73,8 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if(user != null) {
-            Intent k = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(k);
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }
 

@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        startActivity(new Intent( MainActivity.this, LoginActivity.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

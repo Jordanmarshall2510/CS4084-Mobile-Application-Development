@@ -36,7 +36,9 @@ public class SignUpActivity extends AppCompatActivity {
             {
                 TextInputEditText emailInput = findViewById(R.id.etemail);
                 TextInputEditText passwordInput = findViewById(R.id.etPassword);
-                createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
+                if(emailInput.getText().toString()!= null && passwordInput.getText().toString() != null) {
+                    createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
+                }
             }
 
         });
@@ -45,9 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent k = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(k);
+                finish();
             }
         });
 
@@ -78,8 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user)
     {
         if(user != null) {
-            Intent k = new Intent(SignUpActivity.this, MainActivity.class);
-            startActivity(k);
+            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
         }
     }
 
