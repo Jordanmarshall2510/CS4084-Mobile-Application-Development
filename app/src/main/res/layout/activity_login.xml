@@ -22,7 +22,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etUsername"/>
+            android:id="@+id/loginUsername"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,7 +33,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etPassword"
+            android:id="@+id/loginPassword"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 

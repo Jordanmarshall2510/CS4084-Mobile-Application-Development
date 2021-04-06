@@ -1,32 +1,48 @@
 package com.example.cs4084_mobile_application_development;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        Button btn1 = (Button)findViewById(R.id.signupSubmit);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        Button signUpButton = (Button)findViewById(R.id.signupSubmit);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                finish();
+            public void onClick(View v)
+            {
+                TextInputEditText emailInput = findViewById(R.id.etemail);
+                TextInputEditText passwordInput = findViewById(R.id.etPassword);
+                createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
             }
+
         });
 
-
-
-        Button btn2 = (Button)findViewById(R.id.goBack);
-        btn2.setOnClickListener(new View.OnClickListener() {
+        Button goBackButton = (Button)findViewById(R.id.goBack);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -35,6 +51,36 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-
     }
+
+
+    private void createAccount(String email, String password) {
+        // [START create_user_with_email]
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+        // [END create_user_with_email]
+    }
+
+    private void updateUI(FirebaseUser user)
+    {
+        if(user != null) {
+            Intent k = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(k);
+        }
+    }
+
 }
