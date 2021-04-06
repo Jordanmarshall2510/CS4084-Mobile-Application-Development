@@ -98,11 +98,13 @@ public class StatisticFragment extends Fragment {
     }
 
     //Get speed in m/s. Takes startTime and stopTime in milliseconds, and totalDistance in meters.
-    public long getSpeed(long startTime, long stopTime, long totalDistance)
+    public double getSpeed(long startTime, long stopTime, long totalDistance)
     {
         //timeElapsed in seconds
-        long timeElapsed = (stopTime - startTime) / 1000;
-        return totalDistance / timeElapsed;
+        double timeElapsed = (stopTime - startTime) / 1000;
+        double speed = totalDistance / timeElapsed;
+        speed = Math.round(speed * 100) / 100;
+        return speed;
     }
 
     //Gets time elapsed in seconds. Takes startTime and stopTime in milliseconds.
@@ -111,5 +113,3 @@ public class StatisticFragment extends Fragment {
         return (stopTime - startTime) / 1000;
     }
 }
-
-
