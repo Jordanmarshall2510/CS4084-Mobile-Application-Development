@@ -28,7 +28,8 @@ public class Database {
 
     FirebaseFirestore database;
     String userID;
-    DocumentReference userDocument;
+    DocumentReference totalDocument;
+    DocumentReference dailysDocument;
 
     private long dailyDistance = 0;
     private long dailyCalories = 0;
@@ -38,14 +39,16 @@ public class Database {
     private long totalTime = 0;
 
     private Database() {
-        userID = "rioghan";
+        userID = "craig";
         database = FirebaseFirestore.getInstance();
-        userDocument = database.collection("users").document(userID);
+        totalDocument = database.collection("userTotals").document(userID);
+        dailysDocument = database.collection("userDailys").document(userID);
+
         initialiseDatabase();
     }
 
     private void initialiseDatabase() {
-        userDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        dailysDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -54,12 +57,28 @@ public class Database {
                         dailyDistance = (long) document.get("dailyDistance");
                         dailyCalories = (long) document.get("dailyCalories");
                         dailyTime = (long) document.get("dailyTime");
+
+                    } else {
+                        database.collection("userDailys").document(userID).set(formatDocumentData('d'));
+                    }
+                } else {
+                    Log.e(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        totalDocument.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
                         totalDistance = (long) document.get("totalDistance");
                         totalCalories = (long) document.get("totalCalories");
                         totalTime = (long) document.get("totalTime");
 
                     } else {
-                        database.collection("users").add(formatDocumentData());
+                        database.collection("userTotals").document(userID).set(formatDocumentData('t'));
                     }
                 } else {
                     Log.e(TAG, "get failed with ", task.getException());
@@ -68,20 +87,25 @@ public class Database {
         });
     }
 
-    private Map<String, Object> formatDocumentData() {
+    private Map<String, Object> formatDocumentData(char type) {
         Map<String, Object> data = new HashMap<>();
-        data.put("dailyDistance", dailyDistance);
-        data.put("dailyCalories", dailyCalories);
-        data.put("dailyTime", dailyTime);
-        data.put("totalDistance", totalDistance);
-        data.put("totalCalories", totalCalories);
-        data.put("totalTime", totalTime);
+        switch (type) {
+            case 't':
+                data.put("totalDistance", totalDistance);
+                data.put("totalCalories", totalCalories);
+                data.put("totalTime", totalTime);
+                break;
+
+            case 'd':
+                data.put("dailyDistance", dailyDistance);
+                data.put("dailyCalories", dailyCalories);
+                data.put("dailyTime", dailyTime);
+                break;
+            default:
+                Log.e(TAG, "formatDocumentData: Invalid type");
+        }
 
         return data;
-    }
-
-    public void pushToDatabase() {
-        userDocument.set(formatDocumentData());
     }
 
     //Get from database
@@ -112,31 +136,34 @@ public class Database {
     //Add to database
     public void addToDailyDistance(long distance) {
         dailyDistance += distance;
-        userDocument.update("dailyDistance", dailyDistance);
+        dailysDocument.update("dailyDistance", dailyDistance);
+        addToTotalDistance(distance);
     }
 
     public void addToDailyCalories(long calories) {
         dailyCalories += calories;
-        userDocument.update("dailyCalories", dailyCalories);
+        dailysDocument.update("dailyCalories", dailyCalories);
+        addToTotalCalories(calories);
     }
 
     public void addToDailyTime(long time) {
         dailyTime += time;
-        userDocument.update("dailyTime", dailyTime);
+        dailysDocument.update("dailyTime", dailyTime);
+        addToTotalTime(time);
     }
 
     public void addToTotalDistance(long distance) {
         totalDistance += distance;
-        userDocument.update("totalDistance", totalDistance);
+        totalDocument.update("totalDistance", totalDistance);
     }
 
     public void addToTotalCalories(long calories) {
         totalCalories += calories;
-        userDocument.update("totalCalories", totalCalories);
+        totalDocument.update("totalCalories", totalCalories);
     }
 
     public void addToTotalTime(long time) {
         totalTime += time;
-        userDocument.update("totalTime", totalTime);
+        totalDocument.update("totalTime", totalTime);
     }
 }
