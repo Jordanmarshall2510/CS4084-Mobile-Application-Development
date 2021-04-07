@@ -16,21 +16,27 @@ public class LocationService extends BroadcastReceiver {
     private static ObservableArrayList<LatLng> locationPoints = new ObservableArrayList<LatLng>();
 
     @Override
-    public void onReceive(Context context, Intent intent){
-        if(intent != null){
-            final String action = intent.getAction();
-            if(ACTION_PROCESS_UPDATE.equals(action)){
-                LocationResult result = LocationResult.extractResult(intent);
-                if(result != null){
-                    Location location = result.getLastLocation();
-                    LatLng locationPoint = new LatLng(location.getLatitude(), location.getLongitude());
-                    locationPoints.add(locationPoint);
+    public void onReceive(Context context, Intent intent) {
+        if(stopStart.isStarted()) {
+            if (intent != null) {
+                final String action = intent.getAction();
+                if (ACTION_PROCESS_UPDATE.equals(action)) {
+                    LocationResult result = LocationResult.extractResult(intent);
+                    if (result != null) {
+                        Location location = result.getLastLocation();
+                        LatLng locationPoint = new LatLng(location.getLatitude(), location.getLongitude());
+                        locationPoints.add(locationPoint);
+                    }
                 }
             }
         }
     }
 
-    public static ObservableArrayList<LatLng> getLocationPoints(){
+    public static void resetLocationPoints() {
+        locationPoints = new ObservableArrayList<LatLng>();
+    }
+
+    public static ObservableArrayList<LatLng> getLocationPoints() {
         return locationPoints;
     }
 }

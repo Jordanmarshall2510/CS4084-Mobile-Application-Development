@@ -53,12 +53,19 @@ public class HomeFragment extends Fragment {
         timeImage.setColorFilter(Color.parseColor("#0099ff"));
 
         Button startStopButton = (Button) currentView.findViewById(R.id.startStopButton);
+        if (stopStart.isStarted()) {
+            startStopButton.setText("stop");
+        } else {
+            startStopButton.setText("start");
+        }
         startStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (stopStart.isStarted()) {
                     stopStart.stop();
                     startStopButton.setText("start");
+                    calculations.pushRouteToDatabase();
+                    LocationService.resetLocationPoints();
                 } else {
                     stopStart.start();
                     startStopButton.setText("stop");

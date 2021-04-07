@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ObservableArrayList;
@@ -35,18 +34,18 @@ public class StatisticFragment extends Fragment {
         View currentView = getView();
         locationPoints = LocationService.getLocationPoints();
 
-        distance = calculateTotalDistance(locationPoints);
-        time = getTimeElapsed(1609506000000L, 1609509600000L);
-        speed = getSpeed(1609506000000L, 1609509600000L, calculateTotalDistance(locationPoints));
-        calories = 400;
-
         // Get references to text views we want to change
         TextView dailyDistanceTextStatistic = (TextView) currentView.findViewById(R.id.dailyDistanceTextStatistic);
         TextView dailyTimeTextStatistic = (TextView) currentView.findViewById(R.id.dailyTimeTextStatistic);
         TextView dailySpeedTextStatistic = (TextView) currentView.findViewById(R.id.dailySpeedTextStatistic);
         TextView dailyCaloriesBurntTextStatistic = (TextView) currentView.findViewById(R.id.dailyCaloriesBurntTextStatistic);
 
-        // Change the text
+        TextView totalDistanceTextStatistic = (TextView) currentView.findViewById(R.id.totalDistanceTextStatistic);
+        TextView totalTimeTextStatistic = (TextView) currentView.findViewById(R.id.totalTimeTextStatistic);
+        TextView totalSpeedTextStatistic = (TextView) currentView.findViewById(R.id.totalSpeedTextStatistic);
+        TextView totalCaloriesBurntTextStatistic = (TextView) currentView.findViewById(R.id.totalCaloriesBurntTextStatistic);
+
+        // Change the daily text
         dailyDistanceTextStatistic
                 .setText("Distance:    " + distance + "km");
         dailyTimeTextStatistic
@@ -56,60 +55,14 @@ public class StatisticFragment extends Fragment {
         dailyCaloriesBurntTextStatistic
                 .setText("Calories:      " + calories + "kcal");
 
-        System.out.println("##################################################    TotalDistance: " + calculateTotalDistance(locationPoints));
-
-    }
-
-    public static double distance(LatLng one, LatLng two, char unit) {
-        double theta = one.longitude - two.longitude;
-        double dist = Math.sin(deg2rad(one.latitude)) * Math.sin(deg2rad(two.latitude)) + Math.cos(deg2rad(one.latitude)) * Math.cos(deg2rad(two.latitude)) * Math.cos(deg2rad(theta));
-        dist = Math.acos(dist);
-        dist = rad2deg(dist);
-        dist = dist * 60 * 1.1515;
-        if (unit == 'K') {
-            dist = dist * 1.609344;
-        } else if (unit == 'N') {
-            dist = dist * 0.8684;
-        }
-        return (dist);
-    }
-
-    //  This function converts decimal degrees to radians
-    public static double deg2rad(double deg) {
-        return (deg * Math.PI / 180.0);
-    }
-
-    //  This function converts radians to decimal degrees
-    public static double rad2deg(double rad) {
-        return (rad * 180.0 / Math.PI);
-    }
-
-    //Calculates total distance in meters
-    public long calculateTotalDistance(ObservableArrayList<LatLng> points)
-    {
-        double result = 0;
-
-        for (int i = 1; i < points.size(); i++)
-        {
-            result += distance(points.get(i), points.get(i-1), 'K');
-        }
-
-        return (long) (result * 1000);
-    }
-
-    //Get speed in m/s. Takes startTime and stopTime in milliseconds, and totalDistance in meters.
-    public double getSpeed(long startTime, long stopTime, long totalDistance)
-    {
-        //timeElapsed in seconds
-        double timeElapsed = (stopTime - startTime) / 1000;
-        double speed = totalDistance / timeElapsed;
-        speed = Math.round(speed * 100) / 100;
-        return speed;
-    }
-
-    //Gets time elapsed in seconds. Takes startTime and stopTime in milliseconds.
-    public long getTimeElapsed(long startTime, long stopTime)
-    {
-        return (stopTime - startTime) / 1000;
+        //Change the total text
+        totalDistanceTextStatistic
+                .setText("Distance:    " + distance + "km");
+        totalTimeTextStatistic
+                .setText("Time:           " + time + "");
+        totalSpeedTextStatistic
+                .setText("Speed:         " + speed + "");
+        totalCaloriesBurntTextStatistic
+                .setText("Calories:      " + calories + "kcal");
     }
 }
