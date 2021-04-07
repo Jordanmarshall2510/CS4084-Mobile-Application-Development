@@ -1,12 +1,12 @@
 package com.example.Database;
 
-import android.nfc.Tag;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,7 +39,10 @@ public class Database {
     private long totalTime = 0;
 
     private Database() {
-        userID = "craig";
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            Log.w("AUTH", "Could not generate database handler, user is not authenticated");
+        }
+        userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();;
         database = FirebaseFirestore.getInstance();
         totalDocument = database.collection("userTotals").document(userID);
         dailysDocument = database.collection("userDailys").document(userID);
