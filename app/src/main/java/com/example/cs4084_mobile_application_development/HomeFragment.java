@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,20 @@ public class HomeFragment extends Fragment {
         distanceImage.setColorFilter(Color.parseColor("#ff3030"));
         caloriesImage.setColorFilter(Color.parseColor("#fba00e"));
         timeImage.setColorFilter(Color.parseColor("#0099ff"));
+
+        Button startStopButton = (Button) currentView.findViewById(R.id.startStopButton);
+        startStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stopStart.isStarted()) {
+                    stopStart.stop();
+                    startStopButton.setText("start");
+                } else {
+                    stopStart.start();
+                    startStopButton.setText("stop");
+                }
+            }
+        });
 
     }
 
