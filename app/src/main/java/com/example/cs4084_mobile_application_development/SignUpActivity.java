@@ -36,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
             {
                 TextInputEditText emailInput = findViewById(R.id.etemail);
                 TextInputEditText passwordInput = findViewById(R.id.etPassword);
-                if(emailInput.getText().toString()!= null && passwordInput.getText().toString() != null) {
+                if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0 ){
                     createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
                 }
             }
@@ -50,7 +50,6 @@ public class SignUpActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
 

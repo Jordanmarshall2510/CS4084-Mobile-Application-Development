@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TextInputEditText emailInput = findViewById(R.id.loginUsername);
                 TextInputEditText passwordInput = findViewById(R.id.loginPassword);
-                if(emailInput.getText().toString()!= null && passwordInput.getText().toString() != null) {
+                if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0) {
                     signIn(emailInput.getText().toString(), passwordInput.getText().toString());
                 }
             }
