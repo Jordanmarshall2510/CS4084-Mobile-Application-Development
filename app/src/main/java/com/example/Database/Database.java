@@ -3,15 +3,20 @@ package com.example.Database;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Database {
@@ -30,6 +35,7 @@ public class Database {
     String userID;
     DocumentReference totalDocument;
     DocumentReference dailysDocument;
+    CollectionReference collectionRef;
 
     private long dailyDistance = 0;
     private long dailyTime = 0;
@@ -44,6 +50,7 @@ public class Database {
         database = FirebaseFirestore.getInstance();
         totalDocument = database.collection("userTotals").document(userID);
         dailysDocument = database.collection("userDailys").document(userID);
+        collectionRef = database.collection("userTotals");
 
         initialiseDatabase();
     }
@@ -103,6 +110,29 @@ public class Database {
         }
 
         return data;
+    }
+
+    //Get Leaderboard information
+    @WorkerThread
+    public String[] getLeaderboard() {
+
+        String[] formattedLeaderboard = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
+
+        try {
+            List<DocumentSnapshot> result = Tasks.await(collectionRef.orderBy("totalDistance", Query.Direction.DESCENDING).limit(10).get()).getDocuments();
+            int i = 0;
+            for (DocumentSnapshot document : result) {
+                formattedLeaderboard[i] = document.get("totalDistance") + " ";
+                if(document.getId().equals(userID)) {
+                    formattedLeaderboard[i] += "\t ME";
+                }
+                i++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return formattedLeaderboard;
+        }
     }
 
     //Get from database

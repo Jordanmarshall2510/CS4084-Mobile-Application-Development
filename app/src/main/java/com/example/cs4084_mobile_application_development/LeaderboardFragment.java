@@ -9,10 +9,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.Database.Database;
+
 public class LeaderboardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_leaderboard,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Database database = Database.getInstance();
+
+        super.onViewCreated(view, savedInstanceState);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                database.getLeaderboard();
+            }
+        }).start();
+
     }
 }

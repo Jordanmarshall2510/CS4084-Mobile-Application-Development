@@ -9,7 +9,6 @@ public class calculations {
     public static void pushRouteToDatabase() {
         Database database = Database.getInstance();
         long distance = calculateTotalDistance(LocationService.getLocationPoints());
-        long calories = 0;
         long time = stopStart.getStopTime() - stopStart.getStartTime();
         System.out.println("Distance: " + distance);
         System.out.println("Time: " + time);
