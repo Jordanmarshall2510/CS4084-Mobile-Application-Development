@@ -60,10 +60,14 @@ public class LeaderboardFragment extends Fragment {
         };
 
         for(int i=0; i<10; i++){
-            textViews[i].setText(values[i]);
             if (values[i].contains("ME")){
+                String value = values[i].replace("ME","");
+                textViews[i].setText(((double)Integer.parseInt(value.trim())/1000) +" km");
                 textViews[i].setBackgroundColor(Color.parseColor("#00C6BE"));
                 textViews[i].setTextColor(Color.parseColor("black"));
+            }
+            else{
+                textViews[i].setText(((double)Integer.parseInt(values[i].trim())/1000) +" km");
             }
         }
 
