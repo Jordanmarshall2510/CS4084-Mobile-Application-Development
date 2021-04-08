@@ -49,8 +49,8 @@ public class StatisticFragment extends Fragment {
         TextView totalCaloriesBurntTextStatistic = (TextView) currentView.findViewById(R.id.totalCaloriesBurntTextStatistic);
 
         //Gets the time in minutes and hours for daily time
-        double dailyTimeMinutes = (((double) database.getDailyTime() / 1000) / 60);
-        double dailyTimeHours = ((((double) database.getDailyTime() / 1000) / 60) - dailyTimeMinutes) / 60;
+        double dailyTimeHours = (((double) database.getDailyTime() / 1000) / 60) / 60;
+        double dailyTimeMinutes = (((double) database.getDailyTime() / 1000) / 60) % 60;
 
         dailyTimeMinutes = Math.round(dailyTimeMinutes);
 
@@ -60,19 +60,23 @@ public class StatisticFragment extends Fragment {
         double dailySpeed = dailyDistance / dailyTime;
         double dailySpeedTotal = dailySpeed * 1000;
 
+        //Gets the calories burned per day
+        double dailyMinutesWalked = (((double) database.getDailyTime() / 1000) / 60);
+        double dailyCaloriesBurned = Math.round(4.583 * dailyMinutesWalked);
+
         // Change the daily text
         dailyDistanceTextStatistic
                 .setText("Distance:    " + ((double) database.getDailyDistance() / 1000) + "km");
         dailyTimeTextStatistic
-                .setText("Time:           " + dailyTimeHours +"h " + dailyTimeMinutes + "m");
+                .setText("Time:           " + (long) dailyTimeHours +"h " + (long) dailyTimeMinutes + "m");
         dailySpeedTextStatistic
                 .setText("Speed:         " + ((double) Math.round(dailySpeedTotal * 100) / 100) + "m/s");
         dailyCaloriesBurntTextStatistic
-                .setText("Calories:      " + database.getDailyCalories() + "kcal");
+                .setText("Calories:      " + dailyCaloriesBurned + "kcal");
 
         //Gets the Time in minutes and hours for total time
-        double totalTimeMinutes = (((double) database.getTotalTime() / 1000) / 60);
-        double totalTimeHours = ((((double) database.getTotalTime() / 1000) / 60) - totalTimeMinutes) / 60;
+        double totalTimeHours = (((double) database.getTotalTime() / 1000) / 60) / 60;
+        double totalTimeMinutes = (((double) database.getTotalTime() / 1000) / 60) % 60;
 
         totalTimeMinutes = Math.round(totalTimeMinutes);
 
@@ -82,14 +86,19 @@ public class StatisticFragment extends Fragment {
         double totalSpeed = totalDistance / totalTime;
         double speedTotal = totalSpeed * 1000;
 
+        //Gets the calories burned total
+        double totalMinutesWalked = (((double) database.getTotalTime() / 1000) / 60);
+        double totalCaloriesBurned = Math.round(4.583 * totalMinutesWalked);
+
+
         //Change the total text
         totalDistanceTextStatistic
                 .setText("Distance:    " + (((double) database.getTotalDistance())/ 1000) + "km");
         totalTimeTextStatistic
-                .setText("Time:           " + totalTimeHours + "h " + totalTimeMinutes + "m");
+                .setText("Time:           " + (long) totalTimeHours + "h " + (long) totalTimeMinutes + "m");
         totalSpeedTextStatistic
                 .setText("Speed:         " + ((double) Math.round(speedTotal * 100) / 100) + "m/s");
         totalCaloriesBurntTextStatistic
-                .setText("Calories:      " + database.getTotalCalories() + "kcal");
+                .setText("Calories:      " + (long) totalCaloriesBurned + "kcal");
     }
 }
