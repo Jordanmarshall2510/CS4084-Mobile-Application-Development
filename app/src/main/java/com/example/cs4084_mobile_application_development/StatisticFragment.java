@@ -64,7 +64,7 @@ public class StatisticFragment extends Fragment {
         dailySpeedTextStatistic
                 .setText("Speed:         " + ((double) Math.round(dailySpeedTotal * 100) / 100) + "m/s");
         dailyCaloriesBurntTextStatistic
-                .setText("Calories:      " + dailyCaloriesBurned + "kcal");
+                .setText("Calories:      " + (long) dailyCaloriesBurned + "kcal");
 
         //Gets the Time in minutes and hours for total time
         double totalTimeHours = (((double) database.getTotalTime() / 1000) / 60) / 60;
