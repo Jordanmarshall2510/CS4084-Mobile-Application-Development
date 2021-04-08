@@ -17,10 +17,6 @@ import com.example.Database.Database;
 
 public class HomeFragment extends Fragment {
 
-    public String distanceValue = "1.05";
-    public String caloriesValue = "150";
-    public String timeValue = "100";
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

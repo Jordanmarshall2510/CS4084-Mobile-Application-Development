@@ -15,13 +15,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class StatisticFragment extends Fragment {
 
-    private ObservableArrayList<LatLng> locationPoints;
-
-    double distance = 0;
-    double time = 0;
-    double speed = 0;
-    double calories = 0;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +28,6 @@ public class StatisticFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
         View currentView = getView();
-        locationPoints = LocationService.getLocationPoints();
 
         // Get references to text views we want to change
         TextView dailyDistanceTextStatistic = (TextView) currentView.findViewById(R.id.dailyDistanceTextStatistic);
