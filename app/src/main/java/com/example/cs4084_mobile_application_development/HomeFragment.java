@@ -13,11 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class HomeFragment extends Fragment {
+import com.example.Database.Database;
 
-    public String distanceValue = "1.05";
-    public String caloriesValue = "150";
-    public String timeValue = "100";
+public class HomeFragment extends Fragment {
 
     @Nullable
     @Override
@@ -27,6 +25,8 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+
+        Database database = Database.getInstance();
 
         super.onViewCreated(view, savedInstanceState);
 
@@ -42,10 +42,23 @@ public class HomeFragment extends Fragment {
         ImageView caloriesImage = (ImageView) currentView.findViewById(R.id.caloriesImage);
         ImageView timeImage = (ImageView) currentView.findViewById(R.id.timeImage);
 
+        //Gets the time in minutes and hours for daily time
+        double dailyTimeHours = (((double) database.getDailyTime() / 1000) / 60) / 60;
+        double dailyTimeMinutes = (((double) database.getDailyTime() / 1000) / 60) % 60;
+
+        dailyTimeMinutes = Math.round(dailyTimeMinutes);
+
+        //Gets the calories burned per day
+        double dailyMinutesWalked = (((double) database.getDailyTime() / 1000) / 60);
+        double dailyCaloriesBurned = Math.round(4.583 * dailyMinutesWalked);
+
         // Change the text
-        distanceText.setText(distanceValue + " km");
-        caloriesText.setText(caloriesValue + " kcal");
-        timeText.setText(timeValue + " mins");
+        distanceText
+                .setText(((double) database.getDailyDistance() / 1000) + "km");
+        caloriesText
+                .setText((long) dailyCaloriesBurned + "kcal");
+        timeText
+                .setText((long) dailyTimeHours +"h " + (long) dailyTimeMinutes + "m");
 
         // Change the image colours
         distanceImage.setColorFilter(Color.parseColor("#ff3030"));

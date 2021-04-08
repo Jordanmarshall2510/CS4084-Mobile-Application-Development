@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="getDailyDistance" type="id" />
+    <item name="getDailyCalories" type="id" />
+    <item name="getDailyTime" type="id" />
+    <item name="getTotalDistance" type="id" />
+    <item name="getTotalCalories" type="id" />
+    <item name="getTotalTime" type="id" />
+    <item name="addToDailyDistance" type="id" />
+    <item name="addToDailyCalories" type="id" />
+    <item name="addToDailyTime" type="id" />
+    <item name="addToTotalDistance" type="id" />
+    <item name="addToTotalCalories" type="id" />
+    <item name="addToTotalTime" type="id" />
+</resources>

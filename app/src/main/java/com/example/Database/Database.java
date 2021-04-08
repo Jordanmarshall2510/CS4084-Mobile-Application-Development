@@ -32,10 +32,8 @@ public class Database {
     DocumentReference dailysDocument;
 
     private long dailyDistance = 0;
-    private long dailyCalories = 0;
     private long dailyTime = 0;
     private long totalDistance = 0;
-    private long totalCalories = 0;
     private long totalTime = 0;
 
     private Database() {
@@ -58,7 +56,6 @@ public class Database {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         dailyDistance = (long) document.get("dailyDistance");
-                        dailyCalories = (long) document.get("dailyCalories");
                         dailyTime = (long) document.get("dailyTime");
 
                     } else {
@@ -77,7 +74,6 @@ public class Database {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         totalDistance = (long) document.get("totalDistance");
-                        totalCalories = (long) document.get("totalCalories");
                         totalTime = (long) document.get("totalTime");
 
                     } else {
@@ -95,13 +91,11 @@ public class Database {
         switch (type) {
             case 't':
                 data.put("totalDistance", totalDistance);
-                data.put("totalCalories", totalCalories);
                 data.put("totalTime", totalTime);
                 break;
 
             case 'd':
                 data.put("dailyDistance", dailyDistance);
-                data.put("dailyCalories", dailyCalories);
                 data.put("dailyTime", dailyTime);
                 break;
             default:
@@ -116,20 +110,12 @@ public class Database {
         return dailyDistance;
     }
 
-    public long getDailyCalories() {
-        return dailyCalories;
-    }
-
     public long getDailyTime() {
         return dailyTime;
     }
 
     public long getTotalDistance() {
         return totalDistance;
-    }
-
-    public long getTotalCalories() {
-        return totalCalories;
     }
 
     public long getTotalTime() {
@@ -143,12 +129,6 @@ public class Database {
         addToTotalDistance(distance);
     }
 
-    public void addToDailyCalories(long calories) {
-        dailyCalories += calories;
-        dailysDocument.update("dailyCalories", dailyCalories);
-        addToTotalCalories(calories);
-    }
-
     public void addToDailyTime(long time) {
         dailyTime += time;
         dailysDocument.update("dailyTime", dailyTime);
@@ -158,11 +138,6 @@ public class Database {
     public void addToTotalDistance(long distance) {
         totalDistance += distance;
         totalDocument.update("totalDistance", totalDistance);
-    }
-
-    public void addToTotalCalories(long calories) {
-        totalCalories += calories;
-        totalDocument.update("totalCalories", totalCalories);
     }
 
     public void addToTotalTime(long time) {

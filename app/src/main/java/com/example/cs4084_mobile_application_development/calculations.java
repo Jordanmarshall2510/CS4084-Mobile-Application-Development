@@ -12,10 +12,8 @@ public class calculations {
         long calories = 0;
         long time = stopStart.getStopTime() - stopStart.getStartTime();
         System.out.println("Distance: " + distance);
-        System.out.println("Calories: " + calories);
         System.out.println("Time: " + time);
         database.addToDailyDistance(distance);
-        database.addToDailyCalories(calories);
         database.addToDailyTime(time);
     }
 
