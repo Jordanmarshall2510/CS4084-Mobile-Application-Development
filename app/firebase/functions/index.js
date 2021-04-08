@@ -5,12 +5,12 @@ const database = admin.firestore();
 
 exports.resetDaily =
 functions.pubsub.schedule("every day 00:00")
-.timeZone('Europe/Dublin')
-.onRun((context) => {
-  functions.logger.log("Starting daily deletion");
-  deleteCollection(database, "userDailys", 50);
-  functions.logger.log("Complete daily deletion");
-});
+    .timeZone("Europe/Dublin")
+    .onRun((context) => {
+      functions.logger.log("Starting daily deletion");
+      deleteCollection(database, "userDailys", 50);
+      functions.logger.log("Complete daily deletion");
+    });
 
 /**
  * Delete a collection
