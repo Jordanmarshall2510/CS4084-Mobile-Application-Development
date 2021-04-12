@@ -53,8 +53,7 @@ public class StatisticFragment extends Fragment {
         double dailySpeedTotal = dailySpeed * 1000;
 
         //Gets the calories burned per day
-        double dailyMinutesWalked = (((double) database.getDailyTime() / 1000) / 60);
-        double dailyCaloriesBurned = Math.round(4.583 * dailyMinutesWalked);
+        double dailyCaloriesBurned = Math.round(0.062133241284 * database.getTotalDistance());
 
         // Change the daily text
         dailyDistanceTextStatistic
@@ -79,9 +78,7 @@ public class StatisticFragment extends Fragment {
         double speedTotal = totalSpeed * 1000;
 
         //Gets the calories burned total
-        double totalMinutesWalked = (((double) database.getTotalTime() / 1000) / 60);
-        double totalCaloriesBurned = Math.round(4.583 * totalMinutesWalked);
-
+        double totalCaloriesBurned = Math.round(0.062133241284 * database.getTotalDistance());
 
         //Change the total text
         totalDistanceTextStatistic
