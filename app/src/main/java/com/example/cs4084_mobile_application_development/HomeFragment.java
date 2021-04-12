@@ -22,25 +22,61 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home,container,false);
     }
+    private Database database;
+    private View currentView;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        Database database = Database.getInstance();
+        database = Database.getInstance();
 
         super.onViewCreated(view, savedInstanceState);
 
-        View currentView = getView();
+        currentView = getView();
 
-        // Get references to text views we want to change
-        TextView distanceText = (TextView) currentView.findViewById(R.id.distanceText);
-        TextView caloriesText = (TextView) currentView.findViewById(R.id.caloriesText);
-        TextView timeText = (TextView) currentView.findViewById(R.id.timeText);
+        //Updates the text on the home screen
+        updateText();
 
         // Get references to image views we want to change
         ImageView distanceImage = (ImageView) currentView.findViewById(R.id.distanceImage);
         ImageView caloriesImage = (ImageView) currentView.findViewById(R.id.caloriesImage);
         ImageView timeImage = (ImageView) currentView.findViewById(R.id.timeImage);
+
+        // Change the image colours
+        distanceImage.setColorFilter(Color.parseColor("#ff3030"));
+        caloriesImage.setColorFilter(Color.parseColor("#fba00e"));
+        timeImage.setColorFilter(Color.parseColor("#0099ff"));
+
+        Button startStopButton = (Button) currentView.findViewById(R.id.startStopButton);
+        if (stopStart.isStarted()) {
+            startStopButton.setText("stop");
+        } else {
+            startStopButton.setText("start");
+        }
+
+        startStopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (stopStart.isStarted()) {
+                    stopStart.stop();
+                    startStopButton.setText("start");
+                    calculations.pushRouteToDatabase();
+                    LocationService.resetLocationPoints();
+                    updateText();
+                } else {
+                    stopStart.start();
+                    startStopButton.setText("stop");
+                }
+            }
+        });
+
+    }
+
+    private void updateText() {
+        // Get references to text views we want to change
+        TextView distanceText = (TextView) currentView.findViewById(R.id.distanceText);
+        TextView caloriesText = (TextView) currentView.findViewById(R.id.caloriesText);
+        TextView timeText = (TextView) currentView.findViewById(R.id.timeText);
 
         //Gets the time in minutes and hours for daily time
         double dailyTimeHours = (((double) database.getDailyTime() / 1000) / 60) / 60;
@@ -58,34 +94,7 @@ public class HomeFragment extends Fragment {
         caloriesText
                 .setText((long) dailyCaloriesBurned + "kcal");
         timeText
-                .setText((long) dailyTimeHours +"h " + (long) dailyTimeMinutes + "m");
-
-        // Change the image colours
-        distanceImage.setColorFilter(Color.parseColor("#ff3030"));
-        caloriesImage.setColorFilter(Color.parseColor("#fba00e"));
-        timeImage.setColorFilter(Color.parseColor("#0099ff"));
-
-        Button startStopButton = (Button) currentView.findViewById(R.id.startStopButton);
-        if (stopStart.isStarted()) {
-            startStopButton.setText("stop");
-        } else {
-            startStopButton.setText("start");
-        }
-        startStopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (stopStart.isStarted()) {
-                    stopStart.stop();
-                    startStopButton.setText("start");
-                    calculations.pushRouteToDatabase();
-                    LocationService.resetLocationPoints();
-                } else {
-                    stopStart.start();
-                    startStopButton.setText("stop");
-                }
-            }
-        });
-
+                .setText((long) dailyTimeHours + "h " + (long) dailyTimeMinutes + "m");
     }
 
 }
