@@ -20,6 +20,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        database = Database.getInstance();
         return inflater.inflate(R.layout.fragment_home,container,false);
     }
     private Database database;
@@ -27,8 +28,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
-        database = Database.getInstance();
 
         super.onViewCreated(view, savedInstanceState);
 
@@ -62,14 +61,15 @@ public class HomeFragment extends Fragment {
                     startStopButton.setText("start");
                     calculations.pushRouteToDatabase();
                     LocationService.resetLocationPoints();
+                    ((MainActivity) getActivity()).updateLocation();
                     updateText();
                 } else {
                     stopStart.start();
                     startStopButton.setText("stop");
+                    ((MainActivity) getActivity()).updateLocation();
                 }
             }
         });
-
     }
 
     private void updateText() {

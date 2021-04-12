@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.Database.Database;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -27,17 +26,11 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    static MainActivity instance;
     LocationRequest locationRequest;
     FusedLocationProviderClient fusedLocationProviderClient;
 
-    public static MainActivity getInstance() {
-        return instance;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Database.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -94,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    private void updateLocation() {
+    public void updateLocation() {
         buildLocationRequest();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);

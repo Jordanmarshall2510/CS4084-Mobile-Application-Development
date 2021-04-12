@@ -26,6 +26,7 @@ public class MapFragment extends Fragment {
 
     private GoogleMap mMap;
     private ObservableArrayList<LatLng> locationPoints;
+    private Marker startPoint;
     private Marker endPoint;
     private Polyline line;
 
@@ -37,32 +38,29 @@ public class MapFragment extends Fragment {
         locationPoints.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<LatLng>>() {
             @Override
             public void onChanged(ObservableList<LatLng> sender) { }
+
             @Override
             public void onItemRangeChanged(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
+
             @Override
             public void onItemRangeInserted(ObservableList<LatLng> sender, int positionStart, int itemCount) {
-                if(line != null)
-                {
+                if (line != null) {
                     line.setPoints(sender);
+                    startPoint.remove();
                     endPoint.remove();
-                    endPoint = mMap.addMarker(new MarkerOptions()
-                            .position(sender.get(sender.size() - 1))
-                            .title("End"));
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sender.get(sender.size() - 1), 18));
                 }
-                else
-                {
-                    setupMap();
-                }
+                setupMap();
             }
+
             @Override
             public void onItemRangeMoved(ObservableList<LatLng> sender, int fromPosition, int toPosition, int itemCount) { }
+
             @Override
             public void onItemRangeRemoved(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
         });
 
         //Initialise View
-        View view = inflater.inflate(R.layout.fragment_map,container,false);
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         //Initialise Map Fragment
         SupportMapFragment supportMapFragment = (SupportMapFragment)
@@ -83,12 +81,20 @@ public class MapFragment extends Fragment {
 
     private void setupMap(){
         if(!locationPoints.isEmpty()) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(locationPoints.get(0))
-                    .title("Start"));
-            endPoint = mMap.addMarker(new MarkerOptions()
-                    .position(locationPoints.get(locationPoints.size() - 1))
-                    .title("End"));
+            if(locationPoints.size() == 1) {
+                startPoint = mMap.addMarker(new MarkerOptions()
+                        .position(locationPoints.get(locationPoints.size() - 1))
+                        .title("Current Position"));
+                endPoint = startPoint;
+            } else {
+                startPoint = mMap.addMarker(new MarkerOptions()
+                        .position(locationPoints.get(0))
+                        .title("Start"));
+
+                endPoint = mMap.addMarker(new MarkerOptions()
+                        .position(locationPoints.get(locationPoints.size() - 1))
+                        .title("End"));
+            }
             line = mMap.addPolyline(new PolylineOptions()
                     .addAll(locationPoints)
                     .width(7)
