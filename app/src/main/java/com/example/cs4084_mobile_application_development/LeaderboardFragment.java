@@ -22,11 +22,13 @@ public class LeaderboardFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //Create instance of database class
         Database database = Database.getInstance();
 
         super.onViewCreated(view, savedInstanceState);
         View currentView = getView();
 
+        //Find textview IDs and create textview objects
         TextView row1 = (TextView) currentView.findViewById(R.id.row1);
         TextView row2 = (TextView) currentView.findViewById(R.id.row2);
         TextView row3 = (TextView) currentView.findViewById(R.id.row3);
@@ -38,6 +40,7 @@ public class LeaderboardFragment extends Fragment {
         TextView row9 = (TextView) currentView.findViewById(R.id.row9);
         TextView row10 = (TextView) currentView.findViewById(R.id.row10);
 
+        //Using a thread, gets leaderboard results from database class. Data is already sorted.
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -47,6 +50,7 @@ public class LeaderboardFragment extends Fragment {
 
         thread.start();
 
+        //Join worker thread back into main thread
         try {
             thread.join();
         } catch (InterruptedException e) {
@@ -59,6 +63,7 @@ public class LeaderboardFragment extends Fragment {
             row1, row2, row3, row4, row5, row6, row7, row8, row9, row10
         };
 
+        //Assign value to textview for leaderboard
         for(int i=0; i<10; i++){
             if (values[i].contains("ME")){
                 String value = values[i].replace("ME","");
