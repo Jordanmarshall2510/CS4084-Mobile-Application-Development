@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.Database.Database;
 
+import java.text.DecimalFormat;
+
 public class HomeFragment extends Fragment {
 
     @Nullable
@@ -88,9 +90,13 @@ public class HomeFragment extends Fragment {
         double dailyMinutesWalked = (((double) database.getDailyTime() / 1000) / 60);
         double dailyCaloriesBurned = Math.round(4.583 * dailyMinutesWalked);
 
+        double dailyDistance = ((double)database.getDailyDistance()/1000);
+
+        DecimalFormat df = new DecimalFormat("#.#");
+
         // Change the text
         distanceText
-                .setText(((double) database.getDailyDistance() / 1000) + "km");
+                .setText( df.format(dailyDistance) +"km");
         caloriesText
                 .setText((long) dailyCaloriesBurned + "kcal");
         timeText

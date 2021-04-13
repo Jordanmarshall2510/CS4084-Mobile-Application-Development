@@ -57,13 +57,13 @@ public class StatisticFragment extends Fragment {
 
         // Change the daily text
         dailyDistanceTextStatistic
-                .setText("Distance:    " + ((double) database.getDailyDistance() / 1000) + "km");
+                .setText("Distance:    " + ((double) database.getDailyDistance() / 1000) + " km");
         dailyTimeTextStatistic
                 .setText("Time:           " + (long) dailyTimeHours +"h " + (long) dailyTimeMinutes + "m");
         dailySpeedTextStatistic
-                .setText("Speed:         " + ((double) Math.round(dailySpeedTotal * 100) / 100) + "m/s");
+                .setText("Speed:         " + ((double) Math.round(dailySpeedTotal * 100) / 100) + " m/s");
         dailyCaloriesBurntTextStatistic
-                .setText("Calories:      " + (long) dailyCaloriesBurned + "kcal");
+                .setText("Calories:      " + (long) dailyCaloriesBurned + " kcal");
 
         //Gets the Time in minutes and hours for total time
         double totalTimeHours = (((double) database.getTotalTime() / 1000) / 60) / 60;
@@ -82,12 +82,12 @@ public class StatisticFragment extends Fragment {
 
         //Change the total text
         totalDistanceTextStatistic
-                .setText("Distance:    " + (((double) database.getTotalDistance())/ 1000) + "km");
+                .setText("Distance:    " + (((double) database.getTotalDistance())/ 1000) + " km");
         totalTimeTextStatistic
                 .setText("Time:           " + (long) totalTimeHours + "h " + (long) totalTimeMinutes + "m");
         totalSpeedTextStatistic
-                .setText("Speed:         " + ((double) Math.round(speedTotal * 100) / 100) + "m/s");
+                .setText("Speed:         " + ((double) Math.round(speedTotal * 100) / 100) + " m/s");
         totalCaloriesBurntTextStatistic
-                .setText("Calories:      " + (long) totalCaloriesBurned + "kcal");
+                .setText("Calories:      " + (long) totalCaloriesBurned + " kcal");
     }
 }
