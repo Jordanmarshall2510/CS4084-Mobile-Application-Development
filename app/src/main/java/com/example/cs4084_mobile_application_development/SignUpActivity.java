@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -29,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //This button is used to attempt to sign up
         Button signUpButton = (Button)findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         });
 
+        //This button brings you back to Login page
         Button goBackButton = (Button)findViewById(R.id.goBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +55,12 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * This function checks to see if the email and password submitted is in the database
+     * @param email     This gets the email written down in the email box
+     * @param password  this gets the password written down in the password box
+     * @return whether the sign up is successful by creating a new account or a displaying a failure message
+     */
     private void createAccount(String email, String password) {
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
