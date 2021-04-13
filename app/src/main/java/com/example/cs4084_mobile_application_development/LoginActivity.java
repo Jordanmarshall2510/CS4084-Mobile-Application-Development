@@ -35,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         Button signInButton = (Button)findViewById(R.id.loginSubmit);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * this function gets the email and password written in the email and password boxes
+             */
             public void onClick(View v) {
                 //This gets the email of the user
                 TextInputEditText emailInput = findViewById(R.id.loginUsername);
@@ -49,6 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         Button signUpButton = (Button)findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * This function is used to move from the login activity to the sign up activity
+             */
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }

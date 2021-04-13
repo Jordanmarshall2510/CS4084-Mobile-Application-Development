@@ -38,9 +38,14 @@ public class SignUpActivity extends AppCompatActivity {
         Button signUpButton = (Button)findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * this function gets the email and password written in the email and password boxes
+             */
             public void onClick(View v)
             {
+                //This gets the email of the user
                 TextInputEditText emailInput = findViewById(R.id.etemail);
+                //This gets the password written down
                 TextInputEditText passwordInput = findViewById(R.id.etPassword);
                 if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0 ){
                     createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
@@ -53,6 +58,9 @@ public class SignUpActivity extends AppCompatActivity {
         Button goBackButton = (Button)findViewById(R.id.goBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * This function is used to move from the sign up activity to the login activity
+             */
             public void onClick(View v) {
                 finish();
             }
