@@ -1,187 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="left|center"
-    android:background="@drawable/background">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/dailyTextStatistic"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dailyicon" />
-
-    <GridLayout
-        android:id="@+id/GridLayout"
-        android:layout_width= "match_parent"
-        android:layout_height= "wrap_content"
-        android:gravity="center"
-        android:columnCount="2"
-        android:rowCount="4"
-        android:padding="10sp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="left|center"
+        android:background="@drawable/background">
 
         <ImageView
-            android:id="@+id/distanceImage"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:src="@drawable/distance_icon" />
-        <ImageView
-            android:id="@+id/caloriesImage"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:src="@drawable/calories_icon" />
-        <ImageView
-            android:id="@+id/timeImage"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:src="@drawable/time_icon" />
-
-        <ImageView
-            android:id="@+id/speedImage"
-            android:layout_height="50sp"
-            android:layout_width="50sp"
-            android:layout_row="3"
-            android:layout_column="0"
-            app:tint= "#4ce1c3"
-            android:src="@drawable/ic_baseline_statistics" />
-
-        <TextView
-            android:id="@+id/dailyDistanceTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Distance:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
-
-        <TextView
-            android:id="@+id/dailyCaloriesBurntTextStatistic"
-            android:layout_width="wrap_content"
+            android:id="@+id/dailyTextStatistic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calories:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+            android:src="@drawable/dailyicon" />
 
-        <TextView
-            android:id="@+id/dailyTimeTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+        <GridLayout
+            android:id="@+id/GridLayout"
+            android:layout_width= "match_parent"
+            android:layout_height= "wrap_content"
+            android:gravity="center"
+            android:columnCount="2"
+            android:rowCount="4"
+            android:padding="10sp">
 
-        <TextView
-            android:id="@+id/dailySpeedTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Speed:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+            <ImageView
+                android:id="@+id/distanceImage"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:src="@drawable/distance_icon" />
+            <ImageView
+                android:id="@+id/caloriesImage"
+                android:layout_column="0"
+                android:layout_row="1"
+                android:src="@drawable/calories_icon" />
+            <ImageView
+                android:id="@+id/timeImage"
+                android:layout_column="0"
+                android:layout_row="2"
+                android:src="@drawable/time_icon" />
 
-    </GridLayout>
+            <ImageView
+                android:id="@+id/speedImage"
+                android:layout_height="50sp"
+                android:layout_width="50sp"
+                android:layout_row="3"
+                android:layout_column="0"
+                app:tint= "#4ce1c3"
+                android:src="@drawable/ic_baseline_statistics" />
 
-    <ImageView
-        android:id="@+id/totalTextStatistic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/totalicon" />
+            <TextView
+                android:id="@+id/dailyDistanceTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Distance:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
 
-    <GridLayout
-        android:layout_width= "match_parent"
-        android:layout_height= "wrap_content"
-        android:gravity="center"
-        android:columnCount="2"
-        android:rowCount="4"
-        android:padding="10sp">
+            <TextView
+                android:id="@+id/dailyCaloriesBurntTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/dailyTimeTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/dailySpeedTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+        </GridLayout>
 
         <ImageView
-            android:layout_column="0"
-            android:layout_row="0"
-            android:src="@drawable/distance_icon"/>
-        <ImageView
-            android:layout_column="0"
-            android:layout_row="1"
-            android:src="@drawable/calories_icon" />
-        <ImageView
-            android:layout_column="0"
-            android:layout_row="2"
-            android:src="@drawable/time_icon" />
-
-        <ImageView
-            android:layout_height="50sp"
-            android:layout_width="50sp"
-            android:layout_row="3"
-            android:layout_column="0"
-            app:tint= "#4ce1c3"
-            android:src="@drawable/ic_baseline_statistics" />
-
-        <TextView
-            android:id="@+id/totalDistanceTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Distance:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
-
-        <TextView
-            android:id="@+id/totalCaloriesBurntTextStatistic"
-            android:layout_width="wrap_content"
+            android:id="@+id/totalTextStatistic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calories:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+            android:src="@drawable/totalicon" />
 
-        <TextView
-            android:id="@+id/totalTimeTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+        <GridLayout
+            android:layout_width= "match_parent"
+            android:layout_height= "wrap_content"
+            android:gravity="center"
+            android:columnCount="2"
+            android:rowCount="4"
+            android:padding="10sp">
 
-        <TextView
-            android:id="@+id/totalSpeedTextStatistic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Speed:"
-            android:textSize="20sp"
-            android:layout_column="1"
-            android:layout_row="3"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10sp"/>
+            <ImageView
+                android:layout_column="0"
+                android:layout_row="0"
+                android:src="@drawable/distance_icon"/>
+            <ImageView
+                android:layout_column="0"
+                android:layout_row="1"
+                android:src="@drawable/calories_icon" />
+            <ImageView
+                android:layout_column="0"
+                android:layout_row="2"
+                android:src="@drawable/time_icon" />
 
-    </GridLayout>
+            <ImageView
+                android:layout_height="50sp"
+                android:layout_width="50sp"
+                android:layout_row="3"
+                android:layout_column="0"
+                app:tint= "#4ce1c3"
+                android:src="@drawable/ic_baseline_statistics" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/totalDistanceTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Distance:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/totalCaloriesBurntTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/totalTimeTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/totalSpeedTextStatistic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Speed:"
+                android:textSize="20sp"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10sp"/>
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</ScrollView>
