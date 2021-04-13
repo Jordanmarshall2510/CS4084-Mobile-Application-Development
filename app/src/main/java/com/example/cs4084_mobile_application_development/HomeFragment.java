@@ -38,16 +38,6 @@ public class HomeFragment extends Fragment {
         //Updates the text on the home screen
         updateText();
 
-        // Get references to image views we want to change
-        ImageView distanceImage = (ImageView) currentView.findViewById(R.id.distanceImage);
-        ImageView caloriesImage = (ImageView) currentView.findViewById(R.id.caloriesImage);
-        ImageView timeImage = (ImageView) currentView.findViewById(R.id.timeImage);
-
-        // Change the image colours
-        distanceImage.setColorFilter(Color.parseColor("#ff3030"));
-        caloriesImage.setColorFilter(Color.parseColor("#fba00e"));
-        timeImage.setColorFilter(Color.parseColor("#0099ff"));
-
         Button startStopButton = (Button) currentView.findViewById(R.id.startStopButton);
         if (stopStart.isStarted()) {
             startStopButton.setText("stop");
