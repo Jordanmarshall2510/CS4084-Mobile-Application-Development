@@ -13,9 +13,7 @@
         android:id="@+id/dailyTextStatistic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/dailyicon"
-        android:layout_marginBottom="20sp"
-        android:layout_marginTop="10sp"/>
+        android:src="@drawable/dailyicon" />
 
     <GridLayout
         android:id="@+id/GridLayout"
@@ -24,7 +22,7 @@
         android:gravity="center"
         android:columnCount="2"
         android:rowCount="4"
-        android:padding="20sp">
+        android:padding="10sp">
 
         <ImageView
             android:id="@+id/distanceImage"
@@ -105,9 +103,7 @@
         android:id="@+id/totalTextStatistic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/totalicon"
-        android:layout_marginBottom="20sp"
-        android:layout_marginTop="10sp"/>
+        android:src="@drawable/totalicon" />
 
     <GridLayout
         android:layout_width= "match_parent"
@@ -115,7 +111,7 @@
         android:gravity="center"
         android:columnCount="2"
         android:rowCount="4"
-        android:padding="20sp">
+        android:padding="10sp">
 
         <ImageView
             android:layout_column="0"

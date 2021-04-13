@@ -28,9 +28,9 @@
     <!--3 Statistic Images-->
     <GridLayout
         android:id="@+id/GridLayout"
-        android:layout_width= "wrap_content"
+        android:layout_width= "match_parent"
         android:layout_height= "wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:columnCount="3"
         android:rowCount="2">
 
@@ -38,23 +38,23 @@
             android:id="@+id/distanceImage"
             android:layout_column="0"
             android:layout_row="0"
-            android:paddingHorizontal="40sp"
             android:src="@drawable/distance_icon"
-            android:layout_rowWeight="1"/>
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"/>
         <ImageView
             android:id="@+id/caloriesImage"
             android:layout_column="1"
             android:layout_row="0"
-            android:paddingHorizontal="40sp"
             android:src="@drawable/calories_icon"
-            android:layout_rowWeight="1"/>
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"/>
         <ImageView
             android:id="@+id/timeImage"
             android:layout_column="2"
             android:layout_row="0"
-            android:paddingHorizontal="40sp"
             android:src="@drawable/time_icon"
-            android:layout_rowWeight="1"/>
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"/>
 
         <TextView
             android:id="@+id/distanceText"
@@ -62,8 +62,8 @@
             android:layout_row="1"
             android:text="km"
             android:textSize="25dp"
-            android:layout_width="130sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_gravity="fill"/>
 
         <TextView
             android:id="@+id/caloriesText"
@@ -71,8 +71,8 @@
             android:layout_row="1"
             android:text="kcal"
             android:textSize="25dp"
-            android:layout_width="130sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_gravity="fill"/>
 
         <TextView
             android:id="@+id/timeText"
@@ -80,8 +80,8 @@
             android:layout_row="1"
             android:text="time"
             android:textSize="25dp"
-            android:layout_width="130sp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:layout_gravity="fill"/>
 
     </GridLayout>
 
