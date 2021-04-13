@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -28,18 +27,21 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //This "Button" creates a button for signing in
         Button signInButton = (Button)findViewById(R.id.loginSubmit);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //This gets the email of the user
                 TextInputEditText emailInput = findViewById(R.id.loginUsername);
+                //This gets the password written down
                 TextInputEditText passwordInput = findViewById(R.id.loginPassword);
                 if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0) {
                     signIn(emailInput.getText().toString(), passwordInput.getText().toString());
                 }
             }
         });
-
+        //This button brings you to the Sign up page
         Button signUpButton = (Button)findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,25 +51,29 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This function checks to see if the new email and password is valid or not
+     * @param email     This checks the email written down in the email box to see if it's
+     * @param password  this gets the password written down in the password box
+     * @return indicating whether the sign in is successful by signing you in or giving a message failure
+     */
     private void signIn(String email, String password) {
-        // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // if the sign in is a success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
+                            // if the sign up fails it will display this message
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
                 });
-        // [END sign_in_with_email]
     }
 
     private void updateUI(FirebaseUser user) {
