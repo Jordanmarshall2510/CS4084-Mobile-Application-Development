@@ -35,27 +35,28 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        // Get the reference to location points
         locationPoints = LocationService.getLocationPoints();
+        // Add a listener so we can update the map when a point is added to the array
         locationPoints.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<LatLng>>() {
             @Override
             public void onChanged(ObservableList<LatLng> sender) { }
-
             @Override
             public void onItemRangeChanged(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
-
             @Override
             public void onItemRangeInserted(ObservableList<LatLng> sender, int positionStart, int itemCount) {
+                // When a point is inserted, remove all existing drawings on the map
                 if (line != null) {
                     line.setPoints(sender);
                     startPoint.remove();
                     endPoint.remove();
                 }
+                // Then, redraw the map
                 setupMap();
             }
 
             @Override
             public void onItemRangeMoved(ObservableList<LatLng> sender, int fromPosition, int toPosition, int itemCount) { }
-
             @Override
             public void onItemRangeRemoved(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
         });
