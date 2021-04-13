@@ -21,6 +21,10 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
+    /**
+     * This function deals with the two buttons on the login page that allow
+     * you to log into an account and go to the sign up page.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
