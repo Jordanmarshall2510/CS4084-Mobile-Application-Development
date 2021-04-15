@@ -13,16 +13,15 @@ public class calculations {
         Database database = Database.getInstance();
         long distance = calculateTotalDistance(LocationService.getLocationPoints());
         long time = stopStart.getStopTime() - stopStart.getStartTime();
-        System.out.println("Distance: " + distance);
-        System.out.println("Time: " + time);
         database.addToDailyDistance(distance);
         database.addToDailyTime(time);
     }
 
     /**
      * This function finds the distance between two points
-     * @param one The latitude and longitude of point one
-     * @param two The latitude and longitude of point two
+     *
+     * @param one  The latitude and longitude of point one
+     * @param two  The latitude and longitude of point two
      * @param unit Unit of measurement
      * @return The distance in kilometers from the map
      */
@@ -42,6 +41,7 @@ public class calculations {
 
     /**
      * This function converts decimal degrees to radians
+     *
      * @param deg The degrees
      * @return The change of degrees to radians
      */
@@ -51,6 +51,7 @@ public class calculations {
 
     /**
      * This function converts radians to decimal degrees
+     *
      * @param rad The radians
      * @return The change of radians to degrees
      */
@@ -60,45 +61,17 @@ public class calculations {
 
     /**
      * Calculates total distance in meters
+     *
      * @param points All the points in a route
      * @return The distance in meters
      */
-    public static long calculateTotalDistance(ObservableArrayList<LatLng> points)
-    {
+    public static long calculateTotalDistance(ObservableArrayList<LatLng> points) {
         double result = 0;
 
-        for (int i = 1; i < points.size(); i++)
-        {
-            result += distance(points.get(i), points.get(i-1), 'K');
+        for (int i = 1; i < points.size(); i++) {
+            result += distance(points.get(i), points.get(i - 1), 'K');
         }
 
         return (long) (result * 1000);
-    }
-
-    /**
-     * Get speed in m/s. Takes startTime and stopTime in milliseconds, and totalDistance in meters.
-     * @param startTime The start time in milliseconds.
-     * @param stopTime The stop time in milliseconds.
-     * @param totalDistance The total distance covered.
-     * @return The total speed.
-     */
-    public double getSpeed(long startTime, long stopTime, long totalDistance)
-    {
-        //timeElapsed in seconds
-        double timeElapsed = (stopTime - startTime) / 1000;
-        double speed = totalDistance / timeElapsed;
-        speed = Math.round(speed * 100) / 100;
-        return speed;
-    }
-
-    /**
-     * Gets time elapsed in seconds. Takes startTime and stopTime in milliseconds.
-     * @param startTime The start time in milliseconds
-     * @param stopTime The stop time in milliseconds
-     * @return The time between startTime and stopTime in seconds
-     */
-    public long getTimeElapsed(long startTime, long stopTime)
-    {
-        return (stopTime - startTime) / 1000;
     }
 }

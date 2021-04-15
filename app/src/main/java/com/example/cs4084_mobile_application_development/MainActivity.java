@@ -98,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, getPendingIntent());
     }
 
-    private PendingIntent getPendingIntent(){
+    private PendingIntent getPendingIntent() {
         Intent intent = new Intent(this, LocationService.class);
         intent.setAction(LocationService.ACTION_PROCESS_UPDATE);
         return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    private void buildLocationRequest(){
+    private void buildLocationRequest() {
         locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);

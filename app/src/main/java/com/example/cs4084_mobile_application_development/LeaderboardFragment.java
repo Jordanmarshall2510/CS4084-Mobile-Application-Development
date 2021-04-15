@@ -17,7 +17,7 @@ public class LeaderboardFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_leaderboard,container,false);
+        return inflater.inflate(R.layout.fragment_leaderboard, container, false);
     }
 
     @Override
@@ -57,22 +57,21 @@ public class LeaderboardFragment extends Fragment {
             e.printStackTrace();
         }
 
-        String [] values = Leaderboard.leaderboardValues;
+        String[] values = Leaderboard.leaderboardValues;
         TextView[] textViews =
-        {
-            row1, row2, row3, row4, row5, row6, row7, row8, row9, row10
-        };
+                {
+                        row1, row2, row3, row4, row5, row6, row7, row8, row9, row10
+                };
 
         //Assign value to textview for leaderboard
-        for(int i=0; i<10; i++){
-            if (values[i].contains("ME")){
-                String value = values[i].replace("ME","");
-                textViews[i].setText(((double)Integer.parseInt(value.trim())/1000) +" km");
+        for (int i = 0; i < 10; i++) {
+            if (values[i].contains("ME")) {
+                String value = values[i].replace("ME", "");
+                textViews[i].setText(((double) Integer.parseInt(value.trim()) / 1000) + " km");
                 textViews[i].setBackgroundColor(Color.parseColor("#9500C6BE"));
                 textViews[i].setTextColor(Color.parseColor("black"));
-            }
-            else{
-                textViews[i].setText(((double)Integer.parseInt(values[i].trim())/1000) +" km");
+            } else {
+                textViews[i].setText(((double) Integer.parseInt(values[i].trim()) / 1000) + " km");
             }
         }
 

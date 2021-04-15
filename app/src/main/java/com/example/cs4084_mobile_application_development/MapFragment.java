@@ -40,9 +40,13 @@ public class MapFragment extends Fragment {
         // Add a listener so we can update the map when a point is added to the array
         locationPoints.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<LatLng>>() {
             @Override
-            public void onChanged(ObservableList<LatLng> sender) { }
+            public void onChanged(ObservableList<LatLng> sender) {
+            }
+
             @Override
-            public void onItemRangeChanged(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
+            public void onItemRangeChanged(ObservableList<LatLng> sender, int positionStart, int itemCount) {
+            }
+
             @Override
             public void onItemRangeInserted(ObservableList<LatLng> sender, int positionStart, int itemCount) {
                 // When a point is inserted, remove all existing drawings on the map
@@ -56,9 +60,12 @@ public class MapFragment extends Fragment {
             }
 
             @Override
-            public void onItemRangeMoved(ObservableList<LatLng> sender, int fromPosition, int toPosition, int itemCount) { }
+            public void onItemRangeMoved(ObservableList<LatLng> sender, int fromPosition, int toPosition, int itemCount) {
+            }
+
             @Override
-            public void onItemRangeRemoved(ObservableList<LatLng> sender, int positionStart, int itemCount) { }
+            public void onItemRangeRemoved(ObservableList<LatLng> sender, int positionStart, int itemCount) {
+            }
         });
 
         //Initialise View
@@ -82,9 +89,9 @@ public class MapFragment extends Fragment {
         return view;
     }
 
-    private void setupMap(){
-        if(!locationPoints.isEmpty()) {
-            if(locationPoints.size() == 1) {
+    private void setupMap() {
+        if (!locationPoints.isEmpty()) {
+            if (locationPoints.size() == 1) {
                 startPoint = mMap.addMarker(new MarkerOptions()
                         .position(locationPoints.get(locationPoints.size() - 1))
                         .title("Current Position"));

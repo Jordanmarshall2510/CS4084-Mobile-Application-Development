@@ -20,8 +20,13 @@ import java.util.concurrent.ExecutionException;
 public class Database {
     private static Database DBInstance;
 
+    /**
+     * This function creates a singleton of the Cloud Firestore Database
+     *
+     * @return An instance of the database
+     */
     public static synchronized Database getInstance() {
-        if(DBInstance == null) {
+        if (DBInstance == null) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -59,11 +64,18 @@ public class Database {
     private long totalDistance = 0;
     private long totalTime = 0;
 
+    /**
+     * This function initialises the references to the Cloud Firestore Database
+     *
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     private Database() throws ExecutionException, InterruptedException {
-        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Log.w("AUTH", "Could not generate database handler, user is not authenticated");
         }
-        userID =  FirebaseAuth.getInstance().getCurrentUser().getUid();;
+        userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        ;
         database = FirebaseFirestore.getInstance();
         totalDocument = database.collection("userTotals").document(userID);
         dailysDocument = database.collection("userDailys").document(userID);
@@ -72,6 +84,12 @@ public class Database {
         initialiseDatabase();
     }
 
+    /**
+     * This function gets the collections and documents to the Cloud Firestore Database and adds them as local variables
+     *
+     * @throws ExecutionException
+     * @throws InterruptedException
+     */
     private void initialiseDatabase() throws ExecutionException, InterruptedException {
         DocumentSnapshot document = Tasks.await(dailysDocument.get());
         if (document.exists()) {
@@ -90,6 +108,12 @@ public class Database {
         }
     }
 
+    /**
+     * This function formats the local variables to be pushed to the Cloud Firestore Database
+     *
+     * @param type t for total and d for daily statistics
+     * @return all data in a format compatible with the Cloud Firestore Database
+     */
     private Map<String, Object> formatDocumentData(char type) {
         Map<String, Object> data = new HashMap<>();
         switch (type) {
@@ -110,6 +134,11 @@ public class Database {
         return data;
     }
 
+    /**
+     * This function gets the total distance for the top 10 users from the database and puts them into a string array. It then formats the string to from highest to lowest distance.
+     *
+     * @return A formatted string array of distances from highest to lowest
+     */
     //Get Leaderboard information
     @WorkerThread
     public String[] getLeaderboard() {
@@ -121,7 +150,7 @@ public class Database {
             int i = 0;
             for (DocumentSnapshot document : result) {
                 formattedLeaderboard[i] = document.get("totalDistance") + " ";
-                if(document.getId().equals(userID)) {
+                if (document.getId().equals(userID)) {
                     formattedLeaderboard[i] += "\t ME";
                 }
                 i++;
@@ -133,23 +162,48 @@ public class Database {
         }
     }
 
+    /**
+     * This function gets the users daily distance from the Cloud Firestore Database
+     *
+     * @return The users daily distance
+     */
     //Get from database
     public long getDailyDistance() {
         return dailyDistance;
     }
 
+    /**
+     * This function gets the users daily time from the Cloud Firestore Database
+     *
+     * @return The users daily time
+     */
     public long getDailyTime() {
         return dailyTime;
     }
 
+    /**
+     * This function gets the users total distance from the Cloud Firestore Database
+     *
+     * @return The users total distance
+     */
     public long getTotalDistance() {
         return totalDistance;
     }
 
+    /**
+     * This function gets the users total time from the Cloud Firestore Database
+     *
+     * @return The users total time
+     */
     public long getTotalTime() {
         return totalTime;
     }
 
+    /**
+     * This function adds the users daily distance to the Cloud Firestore Database
+     *
+     * @param distance
+     */
     //Add to database
     public void addToDailyDistance(long distance) {
         dailyDistance += distance;
@@ -157,17 +211,32 @@ public class Database {
         addToTotalDistance(distance);
     }
 
+    /**
+     * This function adds the users daily time to the Cloud Firestore Database
+     *
+     * @param time
+     */
     public void addToDailyTime(long time) {
         dailyTime += time;
         dailysDocument.update("dailyTime", dailyTime);
         addToTotalTime(time);
     }
 
+    /**
+     * This function adds the users total distance to the Cloud Firestore Database
+     *
+     * @param distance
+     */
     public void addToTotalDistance(long distance) {
         totalDistance += distance;
         totalDocument.update("totalDistance", totalDistance);
     }
 
+    /**
+     * This function adds the users total time to the Cloud Firestore Database
+     *
+     * @param time
+     */
     public void addToTotalTime(long time) {
         totalTime += time;
         totalDocument.update("totalTime", totalTime);

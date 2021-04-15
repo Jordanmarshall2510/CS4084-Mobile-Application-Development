@@ -38,7 +38,7 @@ public class LocationService extends BroadcastReceiver {
                     LatLng locationPoint = new LatLng(location.getLatitude(), location.getLongitude());
                     // Clear previous points if we are not currently tracking routes
                     // This allows us to display the current location while not tracking a route
-                    if(!stopStart.isStarted()) {
+                    if (!stopStart.isStarted()) {
                         resetLocationPoints();
                     }
                     // Add the location to the route
@@ -57,6 +57,7 @@ public class LocationService extends BroadcastReceiver {
 
     /**
      * Get the locationPoints array
+     *
      * @return The reference to the locationPoints array
      */
     public static ObservableArrayList<LatLng> getLocationPoints() {

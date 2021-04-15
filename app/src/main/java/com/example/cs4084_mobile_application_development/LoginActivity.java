@@ -1,14 +1,13 @@
 package com.example.cs4084_mobile_application_development;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //This "Button" creates a button for signing in
-        Button signInButton = (Button)findViewById(R.id.loginSubmit);
+        Button signInButton = (Button) findViewById(R.id.loginSubmit);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             /**
@@ -43,13 +42,13 @@ public class LoginActivity extends AppCompatActivity {
                 TextInputEditText emailInput = findViewById(R.id.loginUsername);
                 //This gets the password written down
                 TextInputEditText passwordInput = findViewById(R.id.loginPassword);
-                if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0) {
+                if (emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0) {
                     signIn(emailInput.getText().toString(), passwordInput.getText().toString());
                 }
             }
         });
         //This button brings you to the Sign up page
-        Button signUpButton = (Button)findViewById(R.id.signupSubmit);
+        Button signUpButton = (Button) findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             /**
@@ -63,8 +62,9 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * This function checks to see if the new email and password is valid or not
-     * @param email     This checks the email written down in the email box to see if it's
-     * @param password  this gets the password written down in the password box
+     *
+     * @param email    This checks the email written down in the email box to see if it's
+     * @param password this gets the password written down in the password box
      * @return indicating whether the sign in is successful by signing you in or giving a message failure
      */
     private void signIn(String email, String password) {
@@ -85,11 +85,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
     /**
      * This function connects the sign up activity to the main activity
      */
     private void updateUI(FirebaseUser user) {
-        if(user != null) {
+        if (user != null) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         }
     }

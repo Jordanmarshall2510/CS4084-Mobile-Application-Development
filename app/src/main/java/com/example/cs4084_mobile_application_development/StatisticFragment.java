@@ -5,20 +5,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.ObservableArrayList;
 import androidx.fragment.app.Fragment;
 
 import com.example.Database.Database;
-import com.google.android.gms.maps.model.LatLng;
 
 public class StatisticFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_statistic,container,false);
+        return inflater.inflate(R.layout.fragment_statistic, container, false);
     }
 
     @Override
@@ -43,7 +42,6 @@ public class StatisticFragment extends Fragment {
         //Gets the time in minutes and hours for daily time
         double dailyTimeHours = (((double) database.getDailyTime() / 1000) / 60) / 60;
         double dailyTimeMinutes = (((double) database.getDailyTime() / 1000) / 60) % 60;
-
         dailyTimeMinutes = Math.round(dailyTimeMinutes);
 
         //Gets the speed in meters per second for daily speed
@@ -59,7 +57,7 @@ public class StatisticFragment extends Fragment {
         dailyDistanceTextStatistic
                 .setText("Distance:    " + ((double) database.getDailyDistance() / 1000) + " km");
         dailyTimeTextStatistic
-                .setText("Time:           " + (long) dailyTimeHours +"h " + (long) dailyTimeMinutes + "m");
+                .setText("Time:           " + (long) dailyTimeHours + "h " + (long) dailyTimeMinutes + "m");
         dailySpeedTextStatistic
                 .setText("Speed:         " + ((double) Math.round(dailySpeedTotal * 100) / 100) + " m/s");
         dailyCaloriesBurntTextStatistic
@@ -68,7 +66,6 @@ public class StatisticFragment extends Fragment {
         //Gets the Time in minutes and hours for total time
         double totalTimeHours = (((double) database.getTotalTime() / 1000) / 60) / 60;
         double totalTimeMinutes = (((double) database.getTotalTime() / 1000) / 60) % 60;
-
         totalTimeMinutes = Math.round(totalTimeMinutes);
 
         //Gets the speed in meters per second for the total speed
@@ -82,7 +79,7 @@ public class StatisticFragment extends Fragment {
 
         //Change the total text
         totalDistanceTextStatistic
-                .setText("Distance:    " + (((double) database.getTotalDistance())/ 1000) + " km");
+                .setText("Distance:    " + (((double) database.getTotalDistance()) / 1000) + " km");
         totalTimeTextStatistic
                 .setText("Time:           " + (long) totalTimeHours + "h " + (long) totalTimeMinutes + "m");
         totalSpeedTextStatistic

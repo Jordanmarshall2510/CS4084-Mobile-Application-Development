@@ -1,12 +1,10 @@
 package com.example.cs4084_mobile_application_development;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +21,9 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         database = Database.getInstance();
-        return inflater.inflate(R.layout.fragment_home,container,false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
     private Database database;
     private View currentView;
 
@@ -64,6 +63,9 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    /**
+     * This function updates the statistics text that is to be displayed on the home screen
+     */
     private void updateText() {
         // Get references to text views we want to change
         TextView distanceText = (TextView) currentView.findViewById(R.id.distanceText);
@@ -80,13 +82,13 @@ public class HomeFragment extends Fragment {
         double dailyMinutesWalked = (((double) database.getDailyTime() / 1000) / 60);
         double dailyCaloriesBurned = Math.round(4.583 * dailyMinutesWalked);
 
-        double dailyDistance = ((double)database.getDailyDistance()/1000);
+        double dailyDistance = ((double) database.getDailyDistance() / 1000);
 
         DecimalFormat df = new DecimalFormat("#.#");
 
         // Change the text
         distanceText
-                .setText( df.format(dailyDistance) +"km");
+                .setText(df.format(dailyDistance) + "km");
         caloriesText
                 .setText((long) dailyCaloriesBurned + "kcal");
         timeText

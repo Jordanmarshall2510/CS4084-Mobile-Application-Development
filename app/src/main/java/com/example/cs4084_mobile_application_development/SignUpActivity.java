@@ -1,19 +1,17 @@
 package com.example.cs4084_mobile_application_development;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,19 +33,18 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //This button is used to attempt to sign up
-        Button signUpButton = (Button)findViewById(R.id.signupSubmit);
+        Button signUpButton = (Button) findViewById(R.id.signupSubmit);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             /**
              * this function gets the email and password written in the email and password boxes
              */
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 //This gets the email of the user
                 TextInputEditText emailInput = findViewById(R.id.etemail);
                 //This gets the password written down
                 TextInputEditText passwordInput = findViewById(R.id.etPassword);
-                if(emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0 ){
+                if (emailInput.getText().toString().trim().length() > 0 && passwordInput.getText().toString().trim().length() > 0) {
                     createAccount(emailInput.getText().toString(), passwordInput.getText().toString());
                 }
             }
@@ -55,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         //This button brings you back to Login page
-        Button goBackButton = (Button)findViewById(R.id.goBack);
+        Button goBackButton = (Button) findViewById(R.id.goBack);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             /**
@@ -69,8 +66,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     /**
      * This function checks to see if the email and password submitted is in the database
-     * @param email     This gets the email written down in the email box
-     * @param password  this gets the password written down in the password box
+     *
+     * @param email    This gets the email written down in the email box
+     * @param password this gets the password written down in the password box
      * @return whether the sign up is successful by creating a new account or a displaying a failure message
      */
     private void createAccount(String email, String password) {
@@ -97,9 +95,8 @@ public class SignUpActivity extends AppCompatActivity {
     /**
      * This function connects the sign up activity to the main activity
      */
-    private void updateUI(FirebaseUser user)
-    {
-        if(user != null) {
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
             startActivity(new Intent(SignUpActivity.this, MainActivity.class));
         }
     }
