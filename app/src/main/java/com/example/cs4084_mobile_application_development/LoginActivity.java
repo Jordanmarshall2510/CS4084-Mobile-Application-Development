@@ -85,7 +85,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    /**
+     * This function connects the sign up activity to the main activity
+     */
     private void updateUI(FirebaseUser user) {
         if(user != null) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));

@@ -94,6 +94,9 @@ public class SignUpActivity extends AppCompatActivity {
         // [END create_user_with_email]
     }
 
+    /**
+     * This function connects the sign up activity to the main activity
+     */
     private void updateUI(FirebaseUser user)
     {
         if(user != null) {
